@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <title>AI-SMART Research Group | NUST</title>
+  <meta name="description"
+    content="AI-SMART Research Group: Artificial Intelligence for Spatial Modeling, Analysis and Remote Sensing Technologies. Research in water, weather, climate and environmental systems.">
+
+  <style>
+    /* =========================================
+       THEME — edit these values to change colors
+       ========================================= */
+    :root {
+      --navy: #102e42;
+      --navy-deep: #091d2b;
+      --teal: #087f82;
+      --mint: #76e0c4;
+      --blue: #2563a6;
+      --ink: #193446;
+      --muted: #526979;
+      --paper: #ffffff;
+      --surface: #f2f6f9;
+      --line: #dbe4eb;
+      --radius: 16px;
+      --max-width: 1160px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 100px;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont,
+        "Segoe UI", sans-serif;
+      font-size: 16px;
+      line-height: 1.7;
+    }
+
+    h1, h2, h3, p { margin-top: 0; }
+
+    h1, h2, h3 {
+      line-height: 1.18;
+      letter-spacing: -0.025em;
+    }
+
+    h1 { font-size: clamp(2.5rem, 5.5vw, 4.8rem); }
+    h2 { font-size: clamp(1.85rem, 3vw, 2.7rem); }
+    h3 { font-size: 1.25rem; }
+
+    a { color: var(--teal); }
+    button { font: inherit; }
+    a, button { -webkit-tap-highlight-color: transparent; }
+
+    :focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 5px;
+    }
+
+    .container {
+      width: min(var(--max-width), calc(100% - 48px));
+      margin-inline: auto;
+    }
+
+    .skip-link {
+      position: fixed;
+      left: 16px;
+      top: -100px;
+      z-index: 100;
+      padding: 12px 20px;
+      background: white;
+      color: var(--navy);
+    }
+
+    .skip-link:focus { top: 12px; }
+
+    .eyebrow {
+      display: block;
+      margin-bottom: 16px;
+      color: var(--teal);
+      font-size: 0.875rem;
+      font-weight: 750;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .muted { color: var(--muted); }
+    .section { padding: 88px 0; }
+    .surface { background: var(--surface); }
+
+    .section-intro {
+      max-width: 740px;
+      margin-bottom: 38px;
+    }
+
+    .section-intro p {
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .button {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 48px;
+      padding: 12px 22px;
+      border: 1px solid transparent;
+      border-radius: 7px;
+      background: var(--teal);
+      color: white;
+      font-weight: 650;
+      text-decoration: none;
+      transition: background 160ms ease, transform 160ms ease;
+    }
+
+    .button:hover {
+      background: #06696c;
+      transform: translateY(-2px);
+    }
+
+    .button.light {
+      background: var(--mint);
+      color: var(--navy-deep);
+    }
+
+    .button.outline {
+      border-color: #74919f;
+      background: transparent;
+      color: white;
+    }
+
+    .button.outline:hover { background: #ffffff12; }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 28px;
+    }
+
+    /* Navigation */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      border-bottom: 1px solid var(--line);
+      background: #fffffff5;
+    }
+
+    .nav-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+      min-height: 84px;
+    }
+
+    .brand {
+      display: inline-flex;
+      flex-direction: column;
+      flex-shrink: 0;
+      color: var(--navy);
+      text-decoration: none;
+      line-height: 1.25;
+    }
+
+    .brand strong {
+      font-size: 1.6rem;
+      letter-spacing: -0.045em;
+    }
+
+    .brand strong span { color: var(--teal); }
+
+    .brand small {
+      margin-top: 3px;
+      font-size: 0.8rem;
+      letter-spacing: 0.045em;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 23px;
+    }
+
+    .nav-links a {
+      color: var(--ink);
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover,
+    .nav-links a[aria-current="location"] {
+      color: var(--teal);
+      text-decoration: underline;
+      text-underline-offset: 7px;
+    }
+
+    .menu-toggle {
+      display: none;
+      min-height: 44px;
+      padding: 7px 13px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: white;
+      color: var(--navy);
+      cursor: pointer;
+    }
+
+    /* Hero */
+    .hero {
+      padding: 94px 0 0;
+      overflow: hidden;
+      background: var(--navy-deep);
+      color: white;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr;
+      gap: 68px;
+      align-items: center;
+      padding-bottom: 72px;
+    }
+
+    .hero .eyebrow { color: var(--mint); }
+
+    .hero h1 {
+      max-width: 780px;
+      margin-bottom: 25px;
+    }
+
+    .hero h1 span { color: var(--mint); }
+
+    .hero-description {
+      max-width: 620px;
+      color: #c4d5e0;
+      font-size: 1.12rem;
+    }
+
+    .hero-panel {
+      padding: 28px 0 28px 30px;
+      border-left: 2px solid var(--mint);
+    }
+
+    .hero-panel h2 {
+      font-size: 1.55rem;
+      line-height: 1.45;
+    }
+
+    .hero-panel p {
+      color: #c4d5e0;
+      margin-bottom: 0;
+    }
+
+    .hero-panel .small-label {
+      display: block;
+      margin-bottom: 16px;
+      color: var(--mint);
+      font-size: 0.875rem;
+      font-weight: 700;
+    }
+
+    .hero-topics {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 16px 28px;
+      padding: 22px 0;
+      border-top: 1px solid #ffffff26;
+      color: #d8e4eb;
+      font-size: 0.875rem;
+    }
+
+    /* About */
+    .split {
+      display: grid;
+      grid-template-columns: 0.85fr 1.15fr;
+      gap: 70px;
+    }
+
+    .lead { font-size: 1.2rem; }
+
+    .principle {
+      padding-left: 20px;
+      border-left: 3px solid var(--teal);
+      color: var(--navy);
+      font-weight: 600;
+    }
+
+    /* Research */
+    .research-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 20px;
+    }
+
+    .research-card {
+      padding: 28px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: white;
+    }
+
+    .research-number {
+      display: block;
+      margin-bottom: 24px;
+      color: var(--teal);
+      font-size: 0.875rem;
+      font-weight: 750;
+    }
+
+    .research-card p {
+      color: var(--muted);
+      margin-bottom: 20px;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 7px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tags li {
+      padding: 4px 9px;
+      border-radius: 4px;
+      background: #eef5f6;
+      color: #285a64;
+      font-size: 0.875rem;
+    }
+
+    /* People */
+    .profile {
+      display: grid;
+      grid-template-columns: 0.75fr 1.8fr;
+      gap: 40px;
+      align-items: start;
+      padding: 36px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+    }
+
+    .profile-label {
+      padding: 24px;
+      border-radius: 10px;
+      background: var(--navy);
+      color: white;
+    }
+
+    .profile-label h3 { font-size: 1.7rem; }
+    .profile-label p { margin-bottom: 0; color: #c4d5e0; }
+
+    .profile-body p { color: var(--muted); }
+
+    .text-link {
+      font-weight: 700;
+      text-underline-offset: 4px;
+    }
+
+    /* Research outputs */
+    .output-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 28px;
+    }
+
+    .output-card {
+      padding: 36px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: white;
+    }
+
+    .output-card h3 { font-size: 1.6rem; }
+    .output-card p { color: var(--muted); }
+
+    /* Students */
+    .student-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+
+    .student-list {
+      padding-left: 22px;
+      color: var(--muted);
+    }
+
+    .student-list li { margin-bottom: 12px; }
+
+    details {
+      border-bottom: 1px solid var(--line);
+      padding: 18px 0;
+    }
+
+    summary {
+      cursor: pointer;
+      color: var(--navy);
+      font-weight: 700;
+    }
+
+    details p {
+      margin-top: 14px;
+      margin-bottom: 0;
+      color: var(--muted);
+    }
+
+    .onboarding {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 22px;
+      margin-top: 42px;
+    }
+
+    .onboarding-item {
+      border-top: 3px solid var(--teal);
+      padding-top: 20px;
+    }
+
+    .onboarding-item span {
+      color: var(--teal);
+      font-weight: 700;
+      font-size: 0.875rem;
+    }
+
+    .onboarding-item h3 { margin: 10px 0; }
+    .onboarding-item p { color: var(--muted); }
+
+    /* Contact and footer */
+    .contact {
+      background: var(--navy);
+      color: white;
+    }
+
+    .contact .eyebrow { color: var(--mint); }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    .contact p { color: #d0dfe8; }
+
+    .contact address {
+      font-style: normal;
+      padding-left: 28px;
+      border-left: 1px solid #ffffff40;
+    }
+
+    .contact address strong {
+      display: block;
+      margin-bottom: 12px;
+    }
+
+    footer {
+      padding: 24px 0;
+      background: var(--navy-deep);
+      color: #b8cbd6;
+      font-size: 0.875rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    footer a { color: var(--mint); }
+
+    /* Responsive layouts */
+    @media (max-width: 1000px) {
+      .nav-links { gap: 14px; }
+      .nav-links a { font-size: 0.875rem; }
+      .hero-grid { gap: 35px; }
+      .research-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+
+    @media (max-width: 820px) {
+      .nav-wrap { flex-wrap: wrap; padding: 16px 0; }
+      .nav-links { width: 100%; flex-wrap: wrap; padding-bottom: 8px; }
+
+      /* Navigation stays available if JavaScript is disabled. */
+      .js .menu-toggle { display: inline-block; }
+      .js .nav-links { display: none; }
+      .js .nav-links.is-open {
+        display: flex;
+        flex-direction: column;
+        align-items: stretch;
+        gap: 0;
+      }
+      .js .nav-links a { padding: 12px 0; }
+
+      .hero-grid, .split, .student-grid, .contact-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .hero { padding-top: 58px; }
+      .hero-grid { padding-bottom: 48px; }
+      .hero-panel { max-width: 600px; }
+      .section { padding: 64px 0; }
+      .onboarding { grid-template-columns: repeat(2, 1fr); }
+      .profile { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 540px) {
+      .container { width: calc(100% - 32px); }
+      .research-grid, .output-grid, .onboarding {
+        grid-template-columns: 1fr;
+      }
+      .research-card, .output-card, .profile { padding: 24px; }
+      .hero-topics { justify-content: flex-start; }
+      .actions .button { width: 100%; }
+      .contact address { padding-left: 20px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+    }
+
+    @media print {
+      .site-header, .actions, .menu-toggle, footer { display: none; }
+      .section, .hero { padding: 24px 0; }
+      .hero, .contact, .profile-label {
+        background: white;
+        color: black;
+      }
+      .hero p, .contact p, .hero h1 span,
+      .hero-panel p, .profile-label p { color: black; }
+      .research-card, .output-card, .profile,
+      .onboarding-item { break-inside: avoid; }
+      .container { width: 100%; }
+    }
+  </style>
+</head>
+
+<body id="top">
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#top" aria-label="AI-SMART Research Group home">
+        <strong>AI<span>-SMART</span></strong>
+        <small>Research Group · NUST</small>
+      </a>
+
+      <button class="menu-toggle" type="button"
+        aria-controls="primary-navigation" aria-expanded="false">
+        Menu
+      </button>
+
+      <nav class="nav-links" id="primary-navigation"
+        aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#people">People</a>
+        <a href="#outputs">Publications & Tools</a>
+        <a href="#students">Students</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero-grid">
+          <div>
+            <span class="eyebrow">AI-SMART Research Group</span>
+            <h1 id="hero-title">
+              Developing solutions for
+              <span>water, weather & climate.</span>
+            </h1>
+
+            <p class="hero-description">
+              We connect Earth observations, geospatial analysis,
+              physical modeling, and artificial intelligence to
+              understand environmental change and inform decisions.
+            </p>
+
+            <div class="actions">
+              <a class="button light" href="#research">Explore our research</a>
+              <a class="button outline" href="#students">For prospective students</a>
+            </div>
+          </div>
+
+          <aside class="hero-panel" aria-label="Our full name and approach">
+            <span class="small-label">WHAT AI-SMART STANDS FOR</span>
+            <h2>
+              Artificial Intelligence for Spatial Modeling,
+              Analysis & Remote Sensing Technologies
+            </h2>
+            <p>
+              Research across connected Earth systems—from
+              groundwater and agricultural landscapes to
+              climate extremes and environmental risk.
+            </p>
+          </aside>
+        </div>
+
+        <div class="hero-topics" aria-label="Core research methods">
+          <span>Earth observation</span>
+          <span>Hydrological modeling</span>
+          <span>Geospatial AI</span>
+          <span>Climate & environmental science</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <div class="container split">
+        <div>
+          <span class="eyebrow">About the group</span>
+          <h2 id="about-title">Understanding Earth.<br>Informing decisions.</h2>
+        </div>
+
+        <div>
+          <p class="lead">
+            AI-SMART is a collaborative research group led by
+            <strong>Dr. Arfan Arshad</strong> at the National University
+            of Sciences and Technology (NUST), Pakistan.
+          </p>
+
+          <p class="muted">
+            We address water, weather, climate, and environmental
+            challenges using remote sensing, geospatial technologies,
+            hydrological modeling, and artificial intelligence.
+            Our research connects scientific innovation with practical
+            solutions for communities and ecosystems, particularly
+            in data-scarce and climate-vulnerable regions.
+          </p>
+
+          <p class="principle">
+            Our mission is to develop reliable knowledge and technologies
+            that support water security, environmental sustainability,
+            and resilience to natural hazards.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section surface" id="research"
+      aria-labelledby="research-title">
+      <div class="container">
+        <div class="section-intro">
+          <span class="eyebrow">Research directions</span>
+          <h2 id="research-title">Connected questions. Complementary methods.</h2>
+          <p>
+            Students develop focused research projects across these
+            interconnected areas, guided by scientific questions,
+            data availability, and practical relevance.
+          </p>
+        </div>
+
+        <div class="research-grid">
+          <article class="research-card">
+            <span class="research-number">01 / OBSERVE</span>
+            <h3>Earth Observation & Remote Sensing</h3>
+            <p>
+              Use satellite observations to investigate changes in water
+              storage, precipitation, evapotranspiration, soil moisture,
+              snow, vegetation, and land cover.
+            </p>
+            <ul class="tags" aria-label="Related topics">
+              <li>GRACE/GRACE-FO</li>
+              <li>Satellite datasets</li>
+              <li>Environmental change</li>
+            </ul>
+          </article>
+
+          <article class="research-card">
+            <span class="research-number">02 / MODEL</span>
+            <h3>Hydrology & Earth Systems</h3>
+            <p>
+              Study water balances, rainfall–runoff processes, recharge,
+              storage change, and interactions between land, atmosphere,
+              climate, and human activities.
+            </p>
+            <ul class="tags" aria-label="Related topics">
+              <li>Water balance</li>
+              <li>Land-surface models</li>
+              <li>Recharge</li>
+            </ul>
+          </article>
+
+          <article class="research-card">
+            <span class="research-number">03 / LEARN</span>
+            <h3>Geospatial Artificial Intelligence</h3>
+            <p>
+              Develop and evaluate machine-learning approaches for
+              downscaling, prediction, forecasting, spatial analysis,
+              and transparent uncertainty assessment.
+            </p>
+            <ul class="tags" aria-label="Related topics">
+              <li>Explainable AI</li>
+              <li>Downscaling</li>
+              <li>Uncertainty</li>
+            </ul>
+          </article>
+
+          <article class="research-card">
+            <span class="research-number">04 / SUSTAIN</span>
+            <h3>Groundwater & Agricultural Water</h3>
+            <p>
+              Examine groundwater depletion and recharge, irrigation
+              demand, monitoring priorities, and opportunities for
+              sustainable water management.
+            </p>
+            <ul class="tags" aria-label="Related topics">
+              <li>Groundwater</li>
+              <li>Irrigation</li>
+              <li>Water security</li>
+            </ul>
+          </article>
+
+          <article class="research-card">
+            <span class="research-number">05 / ANTICIPATE</span>
+            <h3>Hydroclimatic Extremes & Risk</h3>
+            <p>
+              Investigate floods, droughts, extreme rainfall, heat,
+              and wildfire–hydrology interactions to understand
+              hazards and their consequences.
+            </p>
+            <ul class="tags" aria-label="Related topics">
+              <li>Floods & droughts</li>
+              <li>Extreme events</li>
+              <li>Risk assessment</li>
+            </ul>
+          </article>
+
+          <article class="research-card">
+            <span class="research-number">06 / ADAPT</span>
+            <h3>Climate & Environmental Sustainability</h3>
+            <p>
+              Assess how climate and land-use changes affect water,
+              ecosystems, agriculture, and communities, and explore
+              adaptation strategies.
+            </p>
+            <ul class="tags" aria-label="Related topics">
+              <li>Climate impacts</li>
+              <li>Ecosystems</li>
+              <li>Adaptation</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="people" aria-labelledby="people-title">
+      <div class="container">
+        <div class="section-intro">
+          <span class="eyebrow">People</span>
+          <h2 id="people-title">Research built through collaboration.</h2>
+        </div>
+
+        <article class="profile">
+          <div class="profile-label">
+            <span class="eyebrow" style="color: var(--mint)">Group lead</span>
+            <h3>Dr. Arfan Arshad</h3>
+            <p>AI-SMART Research Group<br>NUST, Pakistan</p>
+          </div>
+
+          <div class="profile-body">
+            <h3>Remote sensing, hydrology & geospatial AI</h3>
+            <p>
+              Dr. Arshad’s research examines terrestrial water storage,
+              groundwater sustainability, hydrological change, and
+              environmental hazards using satellite observations,
+              modeling, and machine learning.
+            </p>
+            <p>
+              His work includes GRACE downscaling, groundwater assessment,
+              and the development of geospatial tools that connect
+              research with water-management questions.
+            </p>
+            <a class="text-link"
+              href="https://scholar.google.com/citations?user=8c8vq_EAAAAJ&hl=en"
+              target="_blank" rel="noopener noreferrer">
+              View Google Scholar profile ↗
+            </a>
+          </div>
+        </article>
+
+        <!-- Add verified student profiles here.
+             Use each student's name, degree, topic and approved photo.
+             Obtain permission before publishing personal information. -->
+      </div>
+    </section>
+
+    <section class="section surface" id="outputs"
+      aria-labelledby="outputs-title">
+      <div class="container">
+        <div class="section-intro">
+          <span class="eyebrow">Publications & tools</span>
+          <h2 id="outputs-title">From research questions to useful outputs.</h2>
+        </div>
+
+        <div class="output-grid">
+          <article class="output-card">
+            <span class="eyebrow">Scientific publications</span>
+            <h3>Explore the research record</h3>
+            <p>
+              Browse Dr. Arfan Arshad’s publications on water resources,
+              groundwater, remote sensing, hydrological modeling,
+              and machine-learning applications.
+            </p>
+            <a class="button"
+              href="https://scholar.google.com/citations?user=8c8vq_EAAAAJ&hl=en&view_op=list_works&sortby=pubdate"
+              target="_blank" rel="noopener noreferrer">
+              Browse publications ↗
+            </a>
+          </article>
+
+          <article class="output-card">
+            <span class="eyebrow">Research platform</span>
+            <h3>Geo-SMART</h3>
+            <p>
+              A geospatial platform for exploring terrestrial water
+              storage and groundwater anomalies through satellite
+              observations, land-surface datasets, and machine learning.
+            </p>
+            <p>
+              Student contributions can include reproducible workflows,
+              model evaluation, uncertainty analysis, visualization,
+              and decision-support applications.
+            </p>
+            <!-- Add the verified Geo-SMART application URL here:
+            <a class="button" href="YOUR_VERIFIED_APPLICATION_URL"
+               target="_blank" rel="noopener noreferrer">
+              Explore Geo-SMART ↗
+            </a>
+            -->
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="students"
+      aria-labelledby="students-title">
+      <div class="container">
+        <div class="section-intro">
+          <span class="eyebrow">For MS students</span>
+          <h2 id="students-title">Learn the methods. Own the question.</h2>
+          <p>
+            We value curiosity, scientific integrity, thoughtful
+            collaboration, and a willingness to learn.
+          </p>
+        </div>
+
+        <div class="student-grid">
+          <div>
+            <h3>Developing your research</h3>
+            <p class="muted">
+              A strong project starts with a clear question and grows
+              through reading, experimentation, discussion, and revision.
+              Topics and milestones are agreed with the advisor.
+            </p>
+
+            <ul class="student-list">
+              <li>
+                Connect a meaningful environmental question with
+                appropriate data and methods.
+              </li>
+              <li>
+                Build skills in GIS, remote sensing, programming,
+                modeling, and scientific communication.
+              </li>
+              <li>
+                Evaluate assumptions, validation quality,
+                uncertainty, and practical limitations.
+              </li>
+              <li>
+                Produce organized analyses, well-supported writing,
+                and reproducible research outputs.
+              </li>
+            </ul>
+          </div>
+
+          <div>
+            <h3>Working together</h3>
+
+            <details>
+              <summary>Meetings and preparation</summary>
+              <p>
+                Agree on a meeting schedule with your advisor.
+                Bring a concise update covering progress, evidence,
+                challenges, decisions needed, and next steps.
+                Record agreed actions after each meeting.
+              </p>
+            </details>
+
+            <details>
+              <summary>Research integrity and responsible AI</summary>
+              <p>
+                Report results honestly, cite sources, document methods,
+                and protect confidential information. Verify AI-assisted
+                work and disclose its use where required. Students remain
+                responsible for the accuracy and originality of their work.
+              </p>
+            </details>
+
+            <details>
+              <summary>Collaboration and co-authorship</summary>
+              <p>
+                Obtain the advisor’s prior approval before initiating
+                internal or external research collaborations, sharing
+                research materials, or involving additional researchers.
+                Proposed co-authors outside the team must have substantial,
+                documented contributions that justify authorship.
+                Discuss and approve proposed arrangements before making
+                commitments, consistent with applicable authorship criteria.
+              </p>
+            </details>
+
+            <details>
+              <summary>Data, code, and communication</summary>
+              <p>
+                Preserve raw data, document processing steps, maintain
+                backups, and use version control where practical.
+                Share progress early, give respectful feedback, and
+                inform the advisor promptly about delays or difficulties.
+              </p>
+            </details>
+          </div>
+        </div>
+
+        <div class="onboarding" aria-label="Suggested first-month plan">
+          <article class="onboarding-item">
+            <span>WEEK 01</span>
+            <h3>Connect</h3>
+            <p>
+              Meet the advisor, discuss interests, and agree on
+              immediate priorities and communication.
+            </p>
+          </article>
+
+          <article class="onboarding-item">
+            <span>WEEK 02</span>
+            <h3>Frame</h3>
+            <p>
+              Review the literature and draft your research question,
+              objectives, and potential datasets.
+            </p>
+          </article>
+
+          <article class="onboarding-item">
+            <span>WEEK 03</span>
+            <h3>Organize</h3>
+            <p>
+              Establish your project folders, data inventory,
+              research log, and reproducibility plan.
+            </p>
+          </article>
+
+          <article class="onboarding-item">
+            <span>WEEK 04</span>
+            <h3>Discuss</h3>
+            <p>
+              Present your proposed approach and refine a realistic
+              semester plan with your advisor.
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section contact" id="contact"
+      aria-labelledby="contact-title">
+      <div class="container contact-grid">
+        <div>
+          <span class="eyebrow">Research enquiries</span>
+          <h2 id="contact-title">Start with a question that matters.</h2>
+          <p>
+            Prospective students should prepare a short introduction,
+            a CV, and a brief description of their research interests,
+            relevant skills, and possible alignment with the group.
+          </p>
+
+          <!-- Replace this comment with a verified contact link:
+          <a class="button light" href="mailto:YOUR_OFFICIAL_EMAIL">
+            Email the group
+          </a>
+          -->
+        </div>
+
+        <address>
+          <strong>AI-SMART Research Group</strong>
+          <p>
+            Led by Dr. Arfan Arshad<br>
+            National University of Sciences and Technology<br>
+            Islamabad, Pakistan
+          </p>
+          <a class="button outline"
+            href="https://scholar.google.com/citations?user=8c8vq_EAAAAJ&hl=en"
+            target="_blank" rel="noopener noreferrer">
+            Research profile ↗
+          </a>
+        </address>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-inner">
+      <span>
+        © <span id="year">2026</span> AI-SMART Research Group
+      </span>
+      <a href="#top">Back to top ↑</a>
+    </div>
+  </footer>
+
+  <script>
+    "use strict";
+
+    document.documentElement.classList.add("js");
+
+    const menuButton = document.querySelector(".menu-toggle");
+    const navigation = document.querySelector(".nav-links");
+    const navigationLinks = [...navigation.querySelectorAll("a")];
+
+    function closeMenu(returnFocus = false) {
+      navigation.classList.remove("is-open");
+      menuButton.setAttribute("aria-expanded", "false");
+      menuButton.textContent = "Menu";
+
+      if (returnFocus) menuButton.focus();
+    }
+
+    menuButton.addEventListener("click", () => {
+      const expanded =
+        menuButton.getAttribute("aria-expanded") === "true";
+
+      navigation.classList.toggle("is-open", !expanded);
+      menuButton.setAttribute("aria-expanded", String(!expanded));
+      menuButton.textContent = expanded ? "Menu" : "Close";
+    });
+
+    navigationLinks.forEach(link => {
+      link.addEventListener("click", () => {
+        // Return focus to a visible control before hiding the mobile menu.
+        const mobileMenuOpen = navigation.classList.contains("is-open");
+        closeMenu(mobileMenuOpen);
+      });
+    });
+
+    document.addEventListener("keydown", event => {
+      if (
+        event.key === "Escape" &&
+        navigation.classList.contains("is-open")
+      ) {
+        closeMenu(true);
+      }
+    });
+
+    document.addEventListener("click", event => {
+      if (!event.target.closest(".site-header")) {
+        closeMenu();
+      }
+    });
+
+    const desktopQuery = window.matchMedia("(min-width: 821px)");
+    desktopQuery.addEventListener("change", () => closeMenu());
+
+    // Highlight the section currently being read.
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver(entries => {
+        const visible = entries
+          .filter(entry => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+
+        if (!visible.length) return;
+
+        const activeId = visible[0].target.id;
+
+        navigationLinks.forEach(link => {
+          if (link.getAttribute("href") === "#" + activeId) {
+            link.setAttribute("aria-current", "location");
+          } else {
+            link.removeAttribute("aria-current");
+          }
+        });
+      }, {
+        rootMargin: "-15% 0px -55% 0px",
+        threshold: 0
+      });
+
+      document.querySelectorAll("main section[id]").forEach(section => {
+        observer.observe(section);
+      });
+    }
+
+    document.getElementById("year").textContent =
+      new Date().getFullYear();
+  </script>
+</body>
+</html>
